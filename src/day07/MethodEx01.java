@@ -14,6 +14,9 @@ public class MethodEx01 {
 		int choice = 0;
 		double result = 0;
 		int result2 = 0;
+		
+		
+		
 		while (true) {
 
 			System.out.println("1.더하기 2.빼기 3.곱하기 4.나누기 5.나머지 6.종료");
@@ -49,7 +52,7 @@ public class MethodEx01 {
 			else if (choice == 4) {
 				result = me03.div(num1, num2);
 
-				if (result == -1.0) {
+				if (result == 1.0) {
 					System.out.println("오류");
 				}
 

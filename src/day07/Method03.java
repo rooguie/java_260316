@@ -2,6 +2,8 @@ package day07;
 
 import java.util.Scanner;
 
+import jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput;
+
 public class Method03 {
 	/*
 	 * 메서드 정의 => 기능을 정의하는 역할(함수)
@@ -40,13 +42,30 @@ public class Method03 {
 	public double div(int num1,int num2) {
 		double result=0;
 		if(num2==0) {
-			return -1.0; //오류 시 체크할 수 있는 값을 리턴
+			return 1.0; //오류 시 체크할 수 있는 값을 리턴
 		}
 		else{
 			result=(double)num1/num2;
 			return result;
 		}
 	}
+	
+	//print--> 메서드명
+	//2+3=00 모양으로 출력하는 메서드
+	//System.out.println(num1+"+"+num2+"="+sum);
+	//매개변수: int num1, String op, int result 
+	//리턴타입: void(직접 출력은 void)
+	public void print(int num1,int num2,String op,int result) {
+		if(result==1) {
+			break;
+		}
+		System.out.println(num1+op+num2+"="+result);
+		
+	}
+	// 메서드 오버로딩: 같은 기능을 하는 이름이 같은 메서드를 여러개 정의
+	// 같은 기능을 다른 형태의 변수에서 사용하기 위해
+	// 오버로딩 조건: 매개변수의 타입이 다르거나, 매개변수의 개수가 달라야 한다.
+	
 	
 	public int remain(int num1,int num2) {
 		int result=0;

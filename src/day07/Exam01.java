@@ -31,7 +31,7 @@ public class Exam01 {
 			if (numberSplit[0].equals("-")) {
 				System.out.println("프로그램 종료");
 				break;
-				
+
 			} else if (Integer.parseInt(numberSplit[0]) == 0) {
 				System.out.println("프로그램 종료");
 				break;
@@ -42,7 +42,7 @@ public class Exam01 {
 				sum += numList[i];
 			}
 
-			avg = (float)sum / numbers.length();
+			avg = (float) sum / numbers.length();
 
 			System.out.println("입력된 숫자:" + numbers);
 			System.out.println("합계:" + sum);
