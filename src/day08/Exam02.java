@@ -4,7 +4,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exam02 {
-
+	
+	//중복 메서드가 로또랑 유저 메서드에 둘다 사용됨으로 꺼내서 따로 만들기
+	//중복 제거 메서드
+	public boolean isContains(int[] arr,int random) {
+		
+	}
+	
+	
 	// 로또 번호 메서드
 	public int[] lottoNum() {
 		int lottoNum[] = new int[7];
@@ -56,10 +63,17 @@ public class Exam02 {
 		int cnt = 0;// 일치하면 카운트 증가
 		int bonus = 0;
 		boolean bonusCheck = false; // 있으면 true
+		
+		
+		// 유저번호랑 로또번호가 반대로 들어올 수 있는 경우 체크해서 오류내용 출력
+		
+		
+		
+		
 
 		bonus = lotto[lotto.length - 1];
 
-		// 보너스 제외 맞춘 갯수 체크
+		// 보너스 제외 맞춘 개수 체크
 		for (int i = 0; i < lotto.length - 1; i++) {
 			for (int j = 0; j < user.length; j++) {
 				if (lotto[i] == user[j]) {
