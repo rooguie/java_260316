@@ -19,6 +19,19 @@ public class Customer {
 	}
 	
 	
+	//메서드
+	//구매금액 보너스 포인트 누적 => 결제 금액 리턴
+	//매개변수: 구매금액=> int price
+	//리턴타입: 결제금액 리턴=> int
+	
+	public int calcPrice(int price) {
+		int point=(int)(price*bonusRate);
+		this.bonusPoint+=point;
+		//실버 등급은 할인율이 없음
+		return price;
+	}
+	
+	
 	
 	
 	public void printCustomerInfo() {

@@ -5,33 +5,54 @@ public class CustomerMain {
 	public static void main(String[] args) {
 		// -벡화점 고객 리스트
 		/*
-		 * -일반 고객: 적립 
-		 * -골드 고객: 적립+할인=>자식
-		 * -VIP 고객: 적립+할인=> 제일 높게=>자식
+		 * -일반 고객: 적립 -골드 고객: 적립+할인=>자식 -VIP 고객: 적립+할인=> 제일 높게=>자식
 		 * 
-		 * 고객=> Customer
-		 * -멤버변수: 고객ID,고객명,등급(실버(일반),골드,VIP),보너스포인트(적립)
+		 * 고객=> Customer -멤버변수: 고객ID,고객명,등급(실버(일반),골드,VIP),보너스포인트(적립)
 		 * 
-		 * -기본등급:실버
-		 * -기본 적립비율: 구매금액의 1% 적립
+		 * -기본등급:실버 -기본 적립비율: 구매금액의 1% 적립
 		 * 
-		 * 등급
-		 * Silver(기본)/골드/VIP
-		 * -실버: 구입시 할인X/1%적립
-		 * -골드: 5%할인/3%적립
-		 * -VIP:10%할인/5%적립+전담 상담사 존재--> 멤버변수 추가(agentName,agentNum)
+		 * 등급 Silver(기본)/골드/VIP -실버: 구입시 할인X/1%적립 -골드: 5%할인/3%적립 -VIP:10%할인/5%적립+전담 상담사
+		 * 존재--> 멤버변수 추가(agentName,agentNum)
 		 * 
 		 * 
-		 * 1. (보너스)적립 포인트 계산
-		 * -구매금액의 적립보너스 계산=> 누적 적립
-		 * -보너스 적립, 할인여부도 체크하여 실제 구매금액을 리턴
+		 * 1. (보너스)적립 포인트 계산 -구매금액의 적립보너스 계산=> 누적 적립 -보너스 적립, 할인여부도 체크하여 실제 구매금액을 리턴
 		 * 
 		 * 
-		 * 2.출력
-		 * -홍길동님은 @@등급, 현재 보너스 포인트는 000점
-		 * -전담 상담사는 짱구이고, 번호는 1111입니다.(VIP만)
+		 * 2.출력 -홍길동님은 @@등급, 현재 보너스 포인트는 000점 -전담 상담사는 짱구이고, 번호는 1111입니다.(VIP만)
 		 * 
 		 */
+
+		Customer[] silver = new Customer[10];
+
+		silver[0] = new Customer("S_01", "일반01");
+		silver[1] = new Customer("S_02", "일반02");
+		silver[2] = new Customer("S_03", "일반03");
+		silver[3] = new GoldCustomer("G_04", "골드04");
+		silver[4] = new GoldCustomer("G_05", "골드05");
+		silver[5] = new GoldCustomer("G_06", "골드06");
+		silver[6] = new vipCustomer("V_07", "브이07", "담당자G", "107");
+		silver[7] = new vipCustomer("V_08", "브이08", "담당자H", "108");
+		silver[8] = new vipCustomer("V_09", "브이09", "담당자I", "109");
+		silver[9] = new vipCustomer("V_10", "브이10", "담당자J", "110");
+
+		for (int i = 0; i < silver.length; i++) {
+			int price = 100000;
+			price = silver[i].calcPrice(price);
+			silver[i].printCustomerInfo();
+			System.out.println("지불금액:" + price);
+		}
+
+	//다운 캐스팅 사용
+	// 상담사 변경
+	for(int i=0;i<silver.length;i++) {
+		if(silver[i] instanceof vipCustomer) {
+			//다운 캐스팅
+			vipCustomer vip=new vipCustomer();
+		}
+	}
+	
+	
+	//vip고객 리스트
 
 	}
 

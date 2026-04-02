@@ -241,9 +241,6 @@ public class StudentController implements StudentProgram {
 		return;
 	}
 
-	}
-
-
 	@Override
 	public void deleteSubject(Scanner scan) {
 		// 수강 철회도 개인별로 한다.
@@ -484,4 +481,4 @@ public class StudentController implements StudentProgram {
 		this.subList = subList;
 	}
 
-	}
+}
