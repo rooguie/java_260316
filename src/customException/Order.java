@@ -1,20 +1,20 @@
-package costomException;
+package customException;
 
-public class Order extends Product {
-	
+public class Order {
+	private String name;
 	private int orderCount;
 	
 	public Order() {}
 	
 	public Order(String name,int orderCount) {
-		super(name);
+		this.name=name;
 		this.orderCount=orderCount;
 	}
 	
 	
 	
 	public void orderPrint() {
-		System.out.println(super.getName()+"->"+orderCount+"개 주문");
+		System.out.println(this.getName()+"->"+orderCount+"개 주문");
 	}
 
 	
@@ -32,18 +32,13 @@ public class Order extends Product {
 		this.orderCount = orderCount;
 	}
 
-	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
+		return name;
 	}
 
-	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		super.setName(name);
+		this.name = name;
 	}
-	
-	
+
 
 }

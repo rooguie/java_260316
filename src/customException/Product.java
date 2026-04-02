@@ -1,42 +1,23 @@
-package costomException;
+package customException;
 
 public class Product {
 	
 	private String name;
 	private int price;
 	private int count;
+	private Order order;
 	
 	public Product() {}
 
-	public Product(String name) {
-		this.name=name;
-	}
 	
-	public Product( int price, int count) {
-		this.price = price;
-		this.count = count;
-	}
-
-	
-	
-	
-	public Product(String name, int price, int count) {
-		super();
+	public Product(String name, int price, int count,Order order) {;
 		this.name = name;
 		this.price = price;
 		this.count = count;
+		this.order=order;
 	}
 
-	public void countCheck(int orderCount) throws OutOfStockException {
-		
-		if(orderCount>this.count) {
-			throw new OutOfStockException("재고 부족");
-		}
-		else {
-			this.count-=orderCount;
-		}
-		
-	}
+	
 	
 	public void stockPrint(int orderCount) {
 		System.out.println(orderCount+"개 판매");
@@ -44,6 +25,12 @@ public class Product {
 		System.out.println("재고:"+this.count);
 	}
 	
+	public void stockCheck(){
+		if(this.count<order.getOrderCount()){
+			throw new OutOfStockException("재고 부족");
+		}
+		this.count=this.count-order.getOrderCount();
+	}
 	
 	
 	
@@ -73,7 +60,10 @@ public class Product {
 	}
 
 	public void setCount(int count) {
+
+
 		this.count = count;
+		
 	}
 	
 	

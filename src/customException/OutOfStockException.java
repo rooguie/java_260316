@@ -1,6 +1,6 @@
-package costomException;
+package customException;
 
-public class OutOfStockException extends IllegalAccessException {
+public class OutOfStockException extends RuntimeException {
 
 	private static final long serialVersionUID=1L;
 	
