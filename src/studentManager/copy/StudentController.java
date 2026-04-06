@@ -41,10 +41,12 @@ public class StudentController implements StudentProgram {
 	// 학번을 스케너에서 직접 받아
 
 	public int indexSearch(String number) {
-		if(student.contains(number)) {
+		for(int i=0;i<student.size();i++) {
+		if(student.get(i).contains(number)) {
 			return 1;
 		}
 		return -1;
+		}
 	}
 
 	// 수강 신청 시 신청가능한 목록을 출력하는 메소드
@@ -105,55 +107,7 @@ public class StudentController implements StudentProgram {
 
 	}
 
-//	@Override 메서드 쓰기 전
-//	public void insertStudent(Scanner scan) {
-//		// 학생 등록
-//		System.out.println("학번>");
-//		String num = scan.next();
-//
-//		// 학번에 대한 중복 불가 처리
-//		for (int i = 0; i < stdIndex; i++) {
-//			if (student[i].getStudentNumber().equals(num)) {
-//				System.out.println("학번이 중복");
-//				return; // 학번 입력 다시
-//			}
-//		}
-//
-//		// 먼저 객체 선언을 해야
-//		Student std = new Student();
-//		student[this.stdIndex] = std;
-//
-//		System.out.println("학번:");
-//		// 객체가 형성되어서 받을 수 있음
-//		student[this.stdIndex].setStudentNumber(num);
-//
-//		System.out.println("학생 이름:");
-//		String name = scan.next();
-//		student[this.stdIndex].setStudentName(name);
-//
-//		System.out.println("나이:");
-//		int age = scan.nextInt();
-//		student[this.stdIndex].setStudentAge(age);
-//		;
-//
-//		System.out.println("전화번호:");
-//		String phone = scan.next();
-//		student[this.stdIndex].setStudentPhone(phone);
-//
-//		// 전화번호에서 입력 후 enter가 스캐너 버퍼에 남아있음
-//		scan.nextLine();
-//
-//		System.out.println("주소:");
-//		// 한 단어로 입력받기 힘들때
-//		String adress = scan.nextLine();
-//		student[this.stdIndex].setStudentAdress(adress);
-//		;
-//
-//		System.out.println("등록 완료");
-//
-//		this.stdIndex++;
-//
-//	}
+
 
 	@Override
 	public void printStudentList() {
@@ -185,25 +139,7 @@ public class StudentController implements StudentProgram {
 
 	}
 
-//	@Override
-//	public void searchStudent(Scanner scan) {
-//		// 학생 검색
-//		// 학생 학번을 입력받아 그 학생의 정보를 출력
-//		System.out.println("학번 입력:");
-//		String num = scan.next();
-//
-//		// 학생 번지를 확인
-//		for (int i = 0; i < stdIndex; i++) {
-//			if (student[i].getStudentNumber().equals(num)) {
-//				student[i].printInfo();
-//				student[i].printSubjectList();
-//				return;
-//			}
-//		}
-//
-//		System.out.println("일치하는 학번이 없음");
-//
-//	}
+
 
 	@Override
 	public void insertSubject(Scanner scan) {

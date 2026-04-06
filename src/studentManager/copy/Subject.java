@@ -1,75 +1,32 @@
 package studentManager.copy;
 
+import java.util.Objects;
+
 public class Subject {
 	//과목정보 클래스
 	//과목정보: 과목코드,과목명,시수,강사명,강의장
-//	private String subNo;
-//	private String subName;
-//	private String subSession;
-//	private String teacherName;
-//	private String subClass;
-//	
-//	public Subject() {}
-//	
-//	public Subject(String subNo,String subName,String subSession,String teacherName,String subClass) {
-//		this.subNo=subNo;
-//		this.subName=subName;
-//		this.subSession=subSession;
-//		this.teacherName=teacherName;
-//		this.subClass=subClass;
-//	}
-//	
-//	@Override
-//	public String toString() {
-//		return "과목코드:" + subNo + ", 과목명:" + subName + ", 학기:" + subSession + ", 교수:"
-//				+ teacherName + ", 강의장:" + subClass;
-//	}
-//
-//
-//	public String getSubNo() {
-//		return subNo;
-//	}
-//
-//	public void setSubNo(String subNo) {
-//		this.subNo = subNo;
-//	}
-//
-//	public String getSubName() {
-//		return subName;
-//	}
-//
-//	public void setSubName(String subName) {
-//		this.subName = subName;
-//	}
-//
-//	public String getSubSession() {
-//		return subSession;
-//	}
-//
-//	public void setSubSession(String subSession) {
-//		this.subSession = subSession;
-//	}
-//
-//	public String getTeacherName() {
-//		return teacherName;
-//	}
-//
-//	public void setTeacherName(String teacherName) {
-//		this.teacherName = teacherName;
-//	}
-//
-//	public String getSubClass() {
-//		return subClass;
-//	}
-//
-//	public void setSubClass(String subClass) {
-//		this.subClass = subClass;
-//	}
+
 	
 	
-	//과목정보: 과목코드,과목명,시수,강사명,강의장
-	//멤버변수 -> 생성자-> getter/setter-> toString + 필요한거 추가로
+	@Override
+	public int hashCode() {
+		return Objects.hash(subjectCode);
+	}
 	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		return Objects.equals(subjectCode, other.subjectCode);
+	}
+
+
 	private String subjectCode;
 	private String subjectName;
 	private String subjectTime;
@@ -77,6 +34,11 @@ public class Subject {
 	private String subjectRoom;
 	
 	public Subject() {}
+	//equals를 위한 생성자
+	public Subject(String subjectCode) {
+		this.subjectCode=subjectCode;
+	}
+	
 
 	public Subject(String subjectCode, String subjectName, String subjectTime, String subjectProfessor,
 			String subjectRoom) {
