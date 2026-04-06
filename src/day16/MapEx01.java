@@ -53,8 +53,10 @@ public class MapEx01 {
 					System.out.println("잘못된 입력");
 				}
 			} catch (InputMismatchException e) {
+				scan.nextLine();
 				System.out.println("잘못된 입력값");
 			} catch (Exception e) {
+				scan.nextLine();
 				System.out.println("다시 입력해주세요");
 			}
 
