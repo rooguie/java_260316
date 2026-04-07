@@ -1,6 +1,7 @@
 package day17;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class StreamEx02 {
@@ -47,9 +48,26 @@ public class StreamEx02 {
 		int sum=customerList.stream().mapToInt(n->n.getCost()).sum();
 		System.out.println("총 여행비용: "+sum+"만원");
 		
-		
+		System.out.println("----------------------");
+
 		//2.고객 명단 출력 이름순
-		
+		customerList.stream().sorted(new Comparator<Customer>() {
+
+			public int compare(Customer o1,Customer o2){
+				return o1.getName().compareTo(o2.getName());
+			}
+			
+		}).forEach(n->System.out.println(n.getName()));
+
+
+		System.out.println("-----------------------");
+		//3.20세 이상인 성명 고객 명단 출력=> 나이순으로 정렬 
+		Comparator<Customer> byAge=
+		Comparator.comparingInt((Customer n)->n.getAge()).reversed();
+
+		customerList.stream().sorted(byAge).forEach(n->System.out.println(n.getName()+":"+n.getAge()));
+
+
 		
 		
 		
