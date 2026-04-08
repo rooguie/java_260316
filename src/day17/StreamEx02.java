@@ -64,8 +64,13 @@ public class StreamEx02 {
 		//3.20세 이상인 성명 고객 명단 출력=> 나이순으로 정렬 
 		Comparator<Customer> byAge=
 		Comparator.comparingInt((Customer n)->n.getAge()).reversed();
+		
+		
 
-		customerList.stream().sorted(byAge).forEach(n->System.out.println(n.getName()+":"+n.getAge()));
+		customerList.stream()
+		.filter(n->n.getAge()>=20)
+		.sorted(byAge)
+		.forEach(n->System.out.println(n.getName()+":"+n.getAge()));
 
 
 		

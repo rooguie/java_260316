@@ -1,5 +1,9 @@
 package day16;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,103 +13,179 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class WordController {
+
+	private List<word> wordBook = new ArrayList<word>();
 	
-	private List<word> wordBook=new ArrayList<word>();
-	
+
 	public void addWord() {
 		List<String> tmp = new ArrayList<String>();
-		String word1="dog";
+		String word1 = "dog";
 		tmp.add("개");
 		tmp.add("개과 동물");
 		tmp.add("강아지");
-		wordBook.add(new word(word1,tmp));
-		
+		wordBook.add(new word(word1, tmp));
+
 		List<String> tmp2 = new ArrayList<String>();
-		String word2="cat";
-		tmp.add("고양이");
-		tmp.add("야옹");
-		wordBook.add(new word(word2,tmp2));
-		
+		String word2 = "cat";
+		tmp2.add("고양이");
+		tmp2.add("야옹");
+		wordBook.add(new word(word2, tmp2));
+
 		List<String> tmp3 = new ArrayList<String>(Arrays.asList("돼지"));
-		String word3="pig";
-		wordBook.add(new word(word3,tmp3));
+		String word3 = "pig";
+		wordBook.add(new word(word3, tmp3));
 	}
-	
+
 	public void insertWord(Scanner scan) {
-		//List 먼저 선언
-		List<String> tmp=new ArrayList<String>();
-		
+		// List 먼저 선언
+		List<String> tmp = new ArrayList<String>();
+
 		System.out.println("단어>");
-		String word=scan.next();
-		
-		String end="a";
-		while(!end.toLowerCase().equals("y")) {
+		String word = scan.next();
+
+	
+		while (true) {
+			String end;
 			System.out.println("뜻>");
 			scan.nextLine();
 			tmp.add(scan.nextLine());
-			System.out.println("계속 입력하시겠습니까?");
-			end=scan.next();
+			System.out.println("계속 입력하시겠습니까?(n)");
+			end = scan.next();
+			if(end.toLowerCase().equals("n")) {
+				break;
+			}
 		}
-		wordBook.add(new word(word,tmp));
-		
+		wordBook.add(new word(word, tmp));
+
 	}
 
 	public void searchWord(Scanner scan) {
-		//단어 검색
+		// 단어 검색
 		System.out.println("단어>");
-		String word=scan.next();
-		
-		int index=wordBook.indexOf(new word(word));
-		
-		if(index==-1) {
+		String word = scan.next();
+
+		int index = wordBook.indexOf(new word(word));
+
+		if (index == -1) {
 			System.out.println("검색 단어가 없습니다.");
 			return;
 		}
-		
+
 	}
-	
-	
+
 	public void modifyWord(Scanner scan) {
-		//단어 수정
+		// 단어 수정
 		System.out.println("단어>");
 		String word = scan.next();
-		
-		int index=wordBook.indexOf(new word(word));
-		if(index==-1) {
+
+		int index = wordBook.indexOf(new word(word));
+		if (index == -1) {
 			System.out.println("검색된 단어가 없습니다.");
 			return;
 		}
-		
-		//단어가 존재하는 경우
-		List<String> mean =wordBook.get(index).getMean();
-		int cnt=0;
-		for(String tmp:mean) {
+
+		// 단어가 존재하는 경우
+		List<String> mean = wordBook.get(index).getMean();
+		int cnt = 0;
+		for (String tmp : mean) {
 			cnt++;
-			System.out.println(cnt+"."+tmp);
+			System.out.println(cnt + "." + tmp);
 		}
-		
+
 		System.out.println("수정할 뜻의 번호를 선택>");
-		int i=scan.nextInt();
+		int i = scan.nextInt();
 		System.out.println("변경할 뜻 입력:");
-		String modify=scan.nextLine();
-		
-		mean.set(i-1, modify);
-		wordBook.set(index, new word(word,mean));
+		String modify = scan.nextLine();
+
+		mean.set(i - 1, modify);
+		wordBook.set(index, new word(word, mean));
 		System.out.println("수정완료");
-		
+
 	}
-	
+
+	public void printWord() {
+		// 전체 단어 출력
+		System.out.println("--단어장--");
+		for (word w : wordBook) {
+			System.out.println(w);
+		}
+		System.out.println("------------");
+	}
+
 	public void removeWord(Scanner scan) {
-		//단어 삭제
+		// 단어 삭제
 		System.out.println("단어>");
-		String word=scan.next();
-		
-		if(wordBook.remove(new word(word))) {
-			System.out.println("삭제 완료");
+		String word = scan.next();
+
+		if (wordBook.remove(new word(word))) {
+			System.out.println("삭제완료");
 			return;
 		}
-		System.out.println("-----------------");
+		System.out.println("삭제단어가 없습니다.");
 	}
+
+	public void outFile() throws IOException {
+//		// 파일에 메모장 만들기
+//		File file =new File(this.fileName,"word.txt");
+//		FileWriter fw = new FileWriter(file);
+//		
+//		for(word tmp:wordBook) {
+//
+//			String word=tmp.getWord();
+//			String data=word+"=>"+tmp.getMean()+"\n";
+//			fw.write(data);
+//		}
+//		
+//		fw.close();
+//		System.out.println("업로드 완료");
+		
+		//파일로 출력
+		//StringBuffer 객체 사용 => 추가 기능 append()
+		//String 객체의 확정 버전
+		//StringBuffer 객체를 => String으로 변환하여 저장
+		
+		final String FILENAME="C:\\Users\\hoogil\\Documents\\word.txt";
+		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME));
+		
+		StringBuffer sb = new StringBuffer();
+		// \n 줄바꿈
+		sb.append("--단어장--\r\n");
+		int cnt=0;
+		for(word w:wordBook) {
+			cnt++;
+			sb.append(cnt);
+			sb.append(". ");
+			sb.append(w);
+			sb.append("\r\n");
+		}
+		
+		bw.write(sb.toString());
+		bw.close();
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	public List<word> getWordBook() {
+		return wordBook;
+	}
+
+	public void setWordBook(List<word> wordBook) {
+		this.wordBook = wordBook;
+	}
+	
+
+}
+
+
+
+	
 //	private String word;
 //	private List<String> mean = new ArrayList<>();
 //	private Map<String, List<String>> vocabulary = new HashMap<String, List<String>>();
@@ -273,4 +353,4 @@ public class WordController {
 //		return "WordController [word=" + word + ", getMean()=" + getMean() + "]";
 //	}
 
-}
+

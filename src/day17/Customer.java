@@ -15,19 +15,20 @@ public class Customer {
 	public Customer(String name, int age) {
 		this.name = name;
 		this.age = age;
-		settingCost(age);
+		this.cost=this.age>=15 ? 100:80;
+		//settingCost(age);
 	}
 	
 	
-	public void settingCost(int age) {
-		if(age>=15) {
-			this.cost=100;
-		}
-		else {
-			this.cost=80;
-		}
-	}
-	
+//	public void settingCost(int age) {
+//		if(age>=15) {
+//			this.cost=100;
+//		}
+//		else {
+//			this.cost=80;
+//		}
+//	}
+//	
 	
 
 	@Override
