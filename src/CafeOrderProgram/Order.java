@@ -73,6 +73,7 @@ public class Order {
 
 	public Order(Menu menu) {
 		this.menu = menu;
+		this.option = new java.util.ArrayList<>();
 	}
 
 	
@@ -80,7 +81,7 @@ public class Order {
 	public Order(Menu menu, List<Option> option, Size size) {
 		super();
 		this.menu = menu;
-		this.option = option;
+		this.option = new java.util.ArrayList<>();
 		this.size = size;
 	}
 
@@ -89,6 +90,18 @@ public class Order {
 	// 메뉴+각종 옵션들 가격 계산
 	public int menuPrice() {
 		return menu.getPrice() + option.stream().mapToInt(n->n.getPrice()).sum() + size.getPrice();
+	}
+
+	//추가된 옵션 메뉴 출력
+	public void menuPrint(){
+		System.out.println(this.menu.getName()+"=>");
+
+		option.stream().forEach(n->{
+			String name=n.getName();
+			System.out.println(name+" ");
+		});
+
+		
 	}
 
 	
