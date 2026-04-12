@@ -10,8 +10,6 @@ public class Customer {
 	public Customer() {
 	}
 
-	
-
 	public Customer(String bankName, String customerName, String account, int totalMoney) {
 		this.bankName = bankName;
 		this.customerName = customerName;
@@ -19,16 +17,12 @@ public class Customer {
 		this.totalMoney = totalMoney;
 	}
 
-
-
 	public void infoPrint() {
 		System.out.println("이름:" + this.customerName);
-		System.out.println("은행 이름:"+this.bankName);
+		System.out.println("은행 이름:" + this.bankName);
 		System.out.println("계좌번호:" + this.account);
 		System.out.println("잔액:" + this.totalMoney + "원");
 	}
-	
-	
 
 	public String getAccount() {
 		return account;
@@ -55,13 +49,9 @@ public class Customer {
 		this.totalMoney = totalMoney;
 	}
 
-
-
 	public String getBankName() {
 		return bankName;
 	}
-
-
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
