@@ -12,9 +12,8 @@ public class BankMain {
 		
 		System.out.println("---은행 프로그램---");
 		
-		
-		bpc.createAccount(scan);
-		
+	
+		bpc.checkMyAccount(scan);
 		
 		
 		while(true) {

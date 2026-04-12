@@ -1,140 +1,117 @@
 package BankProgram;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class BankProgramController {
-	
-	private Banks bank=new Banks();
-	private Customer customer=new Customer();
-	private Map<String, String> customerList=new HashMap<String, String>();
-	
-	
-	public BankProgramController() {}
 
-	public BankProgramController(Banks bank, Customer customer, Map<String, String> customerList) {
-		this.bank = bank;
+	private Customer customer = new Customer();
+	private List<Customer> customerList = new ArrayList<>();
+
+	public BankProgramController() {
+	}
+
+	public BankProgramController(Customer customer, List<Customer> customerList) {
 		this.customer = customer;
 		this.customerList = customerList;
 	}
-	
-	
 
-	public void createAccount(Scanner scan) {
-		System.out.println("이름을 입력해주세여:");
-		customer.setCustomerName(scan.next());
-		scan.nextLine();
-		
-		System.out.println("계좌를 생성할 은행을 골라주세요");
-		
-		int number=1;
-		for(Bank tmp:Bank.values()) {
-			System.out.println(number+"."+tmp);
-			number++;
-		}
-		
-		int choice=scan.nextInt();
-		
-		bank.setBank(Bank.values()[choice-1]);
-		
-		if(!bank.getAccountNumber().isEmpty()) {
-			String assignedNumber=bank.getAccountNumber().remove(0);
-			
-			customer.setAccount(Bank.values()[choice-1].getBankNumber()+assignedNumber);
-			
-			customerList.put(customer.getCustomerName(), customer.getAccount());
-			
-			System.out.println("계좌등록 성공");
-		}
-		
-		else {
-			System.out.println("계좌 등록 실패...");
-			System.out.println("남은 계좌 없음");
-		}
-		
-		for(String key:customerList.keySet()) {
-			System.out.println(key+":"+"("+Bank.values()[choice-1]+")"+customerList.get(key));
-		}
-		
-		
+	// 더미 데이터
+	public void addCustomer() {
+
+		List<Customer> customerList = new ArrayList<>();
+
+		// 우리은행 고객 3명
+		customerList.add(new Customer("우리은행", "김철수", "1002-123-456789", 500000));
+		customerList.add(new Customer("우리은행", "이영희", "1002-987-654321", 1250000));
+		customerList.add(new Customer("우리은행", "박지성", "1002-111-222333", 30000));
+
+		// 국민은행 고객 3명
+		customerList.add(new Customer("국민은행", "정민수", "432101-01-554433", 2100000));
+		customerList.add(new Customer("국민은행", "최유진", "943202-04-112233", 75000));
+		customerList.add(new Customer("국민은행", "한결", "210405-01-998877", 430000));
+
+		// 신한은행 고객 3명
+		customerList.add(new Customer("신한은행", "윤서준", "110-443-221100", 890000));
+		customerList.add(new Customer("신한은행", "조예지", "110-554-332211", 1500000));
+		customerList.add(new Customer("신한은행", "임현우", "110-665-443322", 2500));
+
 	}
-	
+
+	//본인 계좌 확인
+	public Customer checkMyAccount(Scanner scan){
+		String myAccount=scan.next();
+
+		for(Customer tmp:customerList){
+			if(tmp.getAccount().equals(myAccount)){
+				return tmp;
+			}
+		}
+
+	}
+
+
+
+
+
+
 
 	public void depositMoney(Scanner scan) {
 		System.out.println("입금 금액을 입력해주세요");
-		int money=scan.nextInt();
-		
-		System.out.println("입금 전 금액:"+customer.getTotalMoney()+"원");
-		
-		customer.setTotalMoney(customer.getTotalMoney()+money);
-		
-		System.out.println("입금 후 금액:"+customer.getTotalMoney()+"원");
-		
+		int money = scan.nextInt();
+
+		System.out.println("입금 전 금액:" + customer.getTotalMoney() + "원");
+
+		customer.setTotalMoney(customer.getTotalMoney() + money);
+
+		System.out.println("입금 후 금액:" + customer.getTotalMoney() + "원");
+
 	}
 
 	public void withdrawMoney(Scanner scan) {
 		System.out.println("출금 금액을 입력해주세요");
-		int money=scan.nextInt();
-		
-		if(money>customer.getTotalMoney()) {
+		int money = scan.nextInt();
+
+		if (money > customer.getTotalMoney()) {
 			System.out.println("잔액 부족");
 			return;
 		}
-		
-		System.out.println("출금 전 금액:"+customer.getTotalMoney()+"원");
-		
-		customer.setTotalMoney(customer.getTotalMoney()-money);
-		
-		System.out.println("출금 후 금액:"+customer.getTotalMoney()+"원");
-		
+
+		System.out.println("출금 전 금액:" + customer.getTotalMoney() + "원");
+
+		customer.setTotalMoney(customer.getTotalMoney() - money);
+
+		System.out.println("출금 후 금액:" + customer.getTotalMoney() + "원");
+
 	}
-	
 
 	public void transferMoney(Scanner scan) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void checkAccount(Scanner scan) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
-	
-	
-
-
-
-	public Banks getBank() {
-		return bank;
-	}
-
-
-	public void setBank(Banks bank) {
-		this.bank = bank;
-	}
-
 
 	public Customer getCustomer() {
 		return customer;
 	}
 
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
-
-	public Map<String, String> getCustomerList() {
+	public List<Customer> getCustomerList() {
 		return customerList;
 	}
 
-
-	public void setCustomerList(Map<String, String> customerList) {
+	public void setCustomerList(List<Customer> customerList) {
 		this.customerList = customerList;
 	}
-
 
 }
