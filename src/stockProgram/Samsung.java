@@ -3,7 +3,8 @@ package stockProgram;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Samsung {
+public class Samsung  {
+
 
 	public List<DataFrame> samsung = new ArrayList<>(); // 삼성전자
 	public double rate;

@@ -9,10 +9,24 @@ public class stockMain {
 
         stockController sc = new stockController();
 
+        sc.setAccount(1000000);
+
 
         sc.deposit(scan); //입금
-        sc.stockGame(); //게임
+
+
+
+        sc.stockGame(scan); //게임
+        
+
+        sc.stockRate(); // 수익률 반환
+
+        System.out.println(sc.getReturnRate());
+
+
         sc.sellcalculation(); //이율만큼 저장
+
+
 
         scan.close();
 

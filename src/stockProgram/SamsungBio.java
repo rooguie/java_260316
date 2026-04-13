@@ -119,7 +119,7 @@ public class SamsungBio {
 			}
 		}
 
-		rate =(double)(finishPrice-startPrice)/startPrice*100;
+		rate =finishPrice-startPrice/startPrice*100.0;
 		this.rate = rate;
 	}
 
